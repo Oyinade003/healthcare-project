@@ -67,7 +67,7 @@ export class TelegramService {
     }
 
     // Update the user's record with their Telegram ID
-    await this.usersService.updateUser(user._id.toString(), {
+    await this.usersService.updateUser(user.email, {
       telegramId: user.telegramId,
     });
     return { message: 'Account linked successfully' };

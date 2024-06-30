@@ -43,8 +43,18 @@ export class UsersService {
   }
 
   // Update a user's information
-  async updateUser(id: string, updateData: Partial<User>): Promise<User | null> {
-    return this.userModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+  // async updateUser(_id: string, updateData: Partial<User>): Promise<User | null> {
+  //   return this.userModel.findByIdAndUpdate(_id, updateData, { new: true }).exec();
+  // }
+
+  // Update a user's information
+  async updateUser(email: string, updateData: Partial<User>): Promise<User> {
+    const updatedUser = await this.userModel.findOneAndUpdate(
+      { email: email },
+      { $set: updateData },
+      { new: true }
+    );
+    return updatedUser;
   }
 
   // Find a user by their ID
